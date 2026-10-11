@@ -1,0 +1,3 @@
+/* Must load before any other stylesheet: the first @layer declaration fixes the cascade order.
+   Tailwind preflight (base) sits below Mantine; Tailwind utilities override Mantine. */
+@layer theme, base, mantine, components, utilities;

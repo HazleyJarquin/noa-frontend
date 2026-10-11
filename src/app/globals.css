@@ -1,26 +1,33 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* Tailwind's dark: variant follows Mantine's color scheme instead of prefers-color-scheme */
+@custom-variant dark (&:where([data-mantine-color-scheme=dark], [data-mantine-color-scheme=dark] *));
 
+/* Brand tokens come from src/shared/theme/colors.ts (emitted by Mantine as --noa-*) */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+  --color-primary: var(--noa-primary);
+  --color-primary-container: var(--noa-primary-container);
+  --color-primary-fixed: var(--noa-primary-fixed);
+  --color-on-primary: var(--noa-on-primary);
+  --color-secondary: var(--noa-secondary);
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  --color-surface: var(--noa-surface);
+  --color-surface-container-lowest: var(--noa-surface-container-lowest);
+  --color-surface-container-low: var(--noa-surface-container-low);
+  --color-surface-container: var(--noa-surface-container);
+  --color-on-surface: var(--noa-on-surface);
+  --color-outline-variant: var(--noa-outline-variant);
+
+  --color-success: var(--noa-success);
+  --color-success-soft: var(--noa-success-soft);
+  --color-success-container: var(--noa-success-container);
+  --color-success-container-hover: var(--noa-success-container-hover);
+  --color-success-outline: var(--noa-success-outline);
+  --color-warning: var(--noa-warning);
+  --color-error: var(--noa-error);
+  --color-link: var(--noa-link);
+  --color-whatsapp: var(--noa-whatsapp);
 }
