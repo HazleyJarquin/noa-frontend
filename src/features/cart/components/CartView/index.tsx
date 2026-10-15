@@ -14,7 +14,7 @@ import {
   Text,
   ThemeIcon,
 } from "@mantine/core";
-import { useMounted } from "@mantine/hooks";
+import { useDisclosure, useMounted } from "@mantine/hooks";
 import {
   IconCreditCard,
   IconShieldCheck,
@@ -24,6 +24,7 @@ import { AnchorLink } from "@/shared/components/AnchorLink";
 import { formatCordobas } from "@/shared/lib/currency";
 import type { Product } from "@/features/products/constants";
 import { RecommendedProductCard } from "@/features/products/components/RecommendedProductCard";
+import { CheckoutDrawer } from "@/features/checkout/components/CheckoutDrawer";
 import { PAYMENT_PROVIDER_LABEL } from "../../constants";
 import { selectSubtotal, useCartStore } from "../../store";
 import { CartHeader } from "../CartHeader";
@@ -49,6 +50,7 @@ export const CartView = ({ suggestions, showSchoolList }: CartViewProps) => {
   const subtotal = useCartStore(selectSubtotal);
   // The cart lives in localStorage: wait for mount so server and client HTML match
   const mounted = useMounted();
+  const [checkoutOpened, { open: openCheckout, close: closeCheckout }] = useDisclosure(false);
 
   // No delivery for now: the total is the subtotal
   const total = subtotal;
@@ -153,8 +155,7 @@ export const CartView = ({ suggestions, showSchoolList }: CartViewProps) => {
             className="px-5 pt-3 pb-2 bg-surface-container-lowest border-t border-outline-variant/30 shadow-[0_-4px_16px_rgba(19,20,81,0.06)]"
           >
             <Button
-              component={Link}
-              href="/checkout"
+              onClick={openCheckout}
               color="navy.9"
               radius="md"
               size="md"
@@ -183,6 +184,8 @@ export const CartView = ({ suggestions, showSchoolList }: CartViewProps) => {
           </Paper>
         </Affix>
       )}
+
+      <CheckoutDrawer opened={checkoutOpened} onClose={closeCheckout} total={total} />
     </div>
   );
 };

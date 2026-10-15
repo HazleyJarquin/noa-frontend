@@ -38,6 +38,127 @@ export type Database = {
         }
         Relationships: []
       }
+      order_items: {
+        Row: {
+          id: string
+          line_total: number
+          name: string
+          order_id: string
+          product_id: string
+          quantity: number
+          unit_price: number
+          variant_id: string
+          variant_label: string | null
+        }
+        Insert: {
+          id?: string
+          line_total: number
+          name: string
+          order_id: string
+          product_id: string
+          quantity: number
+          unit_price: number
+          variant_id: string
+          variant_label?: string | null
+        }
+        Update: {
+          id?: string
+          line_total?: number
+          name?: string
+          order_id?: string
+          product_id?: string
+          quantity?: number
+          unit_price?: number
+          variant_id?: string
+          variant_label?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "order_items_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "orders"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "order_items_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "order_items_variant_id_fkey"
+            columns: ["variant_id"]
+            isOneToOne: false
+            referencedRelation: "product_variants"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      orders: {
+        Row: {
+          created_at: string
+          currency: string
+          customer_email: string | null
+          customer_name: string
+          customer_phone: string
+          id: string
+          notes: string | null
+          number: number
+          paid_at: string | null
+          paylink_external_id: string | null
+          paylink_id: string | null
+          payment_error: string | null
+          payment_expires_at: string | null
+          payment_url: string | null
+          status: string
+          subtotal: number
+          total: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          currency?: string
+          customer_email?: string | null
+          customer_name: string
+          customer_phone: string
+          id?: string
+          notes?: string | null
+          number?: never
+          paid_at?: string | null
+          paylink_external_id?: string | null
+          paylink_id?: string | null
+          payment_error?: string | null
+          payment_expires_at?: string | null
+          payment_url?: string | null
+          status?: string
+          subtotal: number
+          total: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          currency?: string
+          customer_email?: string | null
+          customer_name?: string
+          customer_phone?: string
+          id?: string
+          notes?: string | null
+          number?: never
+          paid_at?: string | null
+          paylink_external_id?: string | null
+          paylink_id?: string | null
+          payment_error?: string | null
+          payment_expires_at?: string | null
+          payment_url?: string | null
+          status?: string
+          subtotal?: number
+          total?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
       product_images: {
         Row: {
           alt: string | null
@@ -311,7 +432,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      mark_order_paid: { Args: { p_order_id: string }; Returns: boolean }
     }
     Enums: {
       [_ in never]: never

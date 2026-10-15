@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "db:types": "supabase gen types typescript --project-id xlusyrjvtcytgdpnpqci --schema public > src/shared/lib/supabase/database.types.ts"
+    "db:types": "supabase gen types typescript --project-id xlusyrjvtcytgdpnpqci --schema public > database.types.tmp && mv database.types.tmp src/shared/lib/supabase/database.types.ts || (rm -f database.types.tmp; exit 1)"
   },
   "dependencies": {
     "@flags-sdk/growthbook": "^0.3.1",
@@ -41,6 +41,7 @@
     "react": "19.3.0",
     "react-dom": "19.3.0",
     "recharts": "^3.10.1",
+    "resend": "^6.33.0",
     "zustand": "^5.0.15"
   },
   "devDependencies": {
