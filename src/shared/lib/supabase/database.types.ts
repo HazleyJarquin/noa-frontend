@@ -427,12 +427,52 @@ export type Database = {
           },
         ]
       }
+      service_requests: {
+        Row: {
+          created_at: string
+          customer_name: string
+          customer_phone: string
+          files: Json
+          id: string
+          kind: string
+          notes: string | null
+          options: Json
+          status: string
+        }
+        Insert: {
+          created_at?: string
+          customer_name: string
+          customer_phone: string
+          files?: Json
+          id: string
+          kind: string
+          notes?: string | null
+          options?: Json
+          status?: string
+        }
+        Update: {
+          created_at?: string
+          customer_name?: string
+          customer_phone?: string
+          files?: Json
+          id?: string
+          kind?: string
+          notes?: string | null
+          options?: Json
+          status?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
       mark_order_paid: { Args: { p_order_id: string }; Returns: boolean }
+      reorder_product_images: {
+        Args: { p_image_ids: string[]; p_product_id: string }
+        Returns: undefined
+      }
     }
     Enums: {
       [_ in never]: never

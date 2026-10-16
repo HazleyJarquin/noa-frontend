@@ -5,9 +5,8 @@ import { AnchorLink } from "../AnchorLink";
 
 const FOOTER_LINKS = [
   { label: "Catálogo General", href: "/productos" },
-  { label: "Listas Escolares", href: "/listas-escolares" },
-  { label: "Cotizaciones", href: "/cotizaciones" },
-  { label: "Preguntas Frecuentes", href: "/preguntas-frecuentes" },
+  { label: "Manualidades", href: "/manualidades" },
+  { label: "Impresiones", href: "/impresiones" },
 ];
 
 export const Footer = async () => {

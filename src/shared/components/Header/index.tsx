@@ -1,12 +1,8 @@
 import Image from "next/image";
-import { ActionIcon, Group, Indicator, Input } from "@mantine/core";
-import {
-  IconMessageFilled,
-  IconRosetteDiscountCheck,
-  IconSearch,
-  IconShoppingBag,
-} from "@tabler/icons-react";
+import { ActionIcon, Group } from "@mantine/core";
+import { IconMessageFilled, IconRosetteDiscountCheck } from "@tabler/icons-react";
 import { getWhatsAppUrl } from "@/shared/lib/whatsapp";
+import { MainMenu } from "../MainMenu";
 
 export const Header = () => {
   return (
@@ -34,18 +30,21 @@ export const Header = () => {
           </div>
         </Group>
 
-        <ActionIcon
-          component="a"
-          href={getWhatsAppUrl("Hola NOA Librería, quiero hacer una consulta.")}
-          target="_blank"
-          rel="noopener noreferrer"
-          size={42}
-          radius="100%"
-          aria-label="Escribir por WhatsApp"
-          className="bg-success-container text-success-soft border-[1.5px] border-success-outline hover:bg-success-container-hover"
-        >
-          <IconMessageFilled size={22} />
-        </ActionIcon>
+        <Group gap="xs" wrap="nowrap">
+          <ActionIcon
+            component="a"
+            href={getWhatsAppUrl("Hola NOA Librería, quiero hacer una consulta.")}
+            target="_blank"
+            rel="noopener noreferrer"
+            size={42}
+            radius="100%"
+            aria-label="Escribir por WhatsApp"
+            className="bg-success-container text-success-soft border-[1.5px] border-success-outline hover:bg-success-container-hover"
+          >
+            <IconMessageFilled size={22} />
+          </ActionIcon>
+          <MainMenu />
+        </Group>
       </div>
     </div>
   );

@@ -2,29 +2,19 @@ import "server-only";
 
 import { Resend } from "resend";
 import { formatCordobas } from "@/shared/lib/currency";
+import { escapeHtml, getCustomerWhatsAppUrl, getNotificationEmailConfig } from "@/shared/lib/email";
 import { createAdminClient } from "@/shared/lib/supabase/admin";
-
-// Customer-typed text goes into the HTML: escape it
-const escapeHtml = (text: string) =>
-  text.replace(/[&<>"']/g, (char) => `&#${char.charCodeAt(0)};`);
-
-// wa.me needs digits only; local 8-digit numbers get Nicaragua's +505
-const toWhatsAppNumber = (phone: string) => {
-  const digits = phone.replace(/\D/g, "");
-  return digits.length === 8 ? `505${digits}` : digits;
-};
 
 // Notifies the store that an order was paid. Never throws: a failed email must not
 // affect the payment confirmation.
 export const sendPaidOrderEmail = async (orderId: string) => {
   try {
-    const apiKey = process.env.RESEND_API_KEY;
-    const to = process.env.ORDER_NOTIFICATION_EMAIL?.split(",").map((email) => email.trim()).filter(Boolean);
-    const from = process.env.ORDER_EMAIL_FROM;
-    if (!apiKey || !to?.length || !from) {
+    const config = getNotificationEmailConfig();
+    if (!config) {
       console.warn("[order email] skipped: missing RESEND_API_KEY / ORDER_NOTIFICATION_EMAIL / ORDER_EMAIL_FROM");
       return;
     }
+    const { apiKey, from, to } = config;
 
     const supabase = createAdminClient();
     const { data: order, error } = await supabase
@@ -37,7 +27,7 @@ export const sendPaidOrderEmail = async (orderId: string) => {
     if (error) throw error;
 
     const total = formatCordobas(Number(order.total));
-    const whatsappUrl = `https://wa.me/${toWhatsAppNumber(order.customer_phone)}`;
+    const whatsappUrl = getCustomerWhatsAppUrl(order.customer_phone);
 
     const rows = order.order_items
       .map(

@@ -10,6 +10,7 @@ import { getCategories } from "@/features/categories/services";
 import { FeaturedCatalog } from "@/features/products/components";
 import { getFeaturedProducts } from "@/features/products/services";
 import { CartSummaryBar } from "@/features/cart/components";
+import { ServicesShowcase } from "@/features/service-requests/components/ServicesShowcase";
 
 export default async function Home() {
   const [categories, products] = await Promise.all([
@@ -39,6 +40,10 @@ export default async function Home() {
             />
           ))}
         </SimpleGrid>
+      </div>
+
+      <div className="px-5">
+        <ServicesShowcase />
       </div>
 
       <div className="px-5">

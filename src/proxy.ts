@@ -4,10 +4,17 @@ import {
   VISITOR_ID_HEADER,
   VISITOR_ID_MAX_AGE,
 } from "@/shared/flags/visitor-id";
+import { refreshSupabaseSession } from "@/shared/lib/supabase/session";
 
-// Assigns every visitor a stable id for GrowthBook targeting and experiments.
-// Pages can't set cookies while rendering, so it has to happen here.
-export function proxy(request: NextRequest) {
+// Runs before every page. Pages can't set cookies while rendering, so it has to happen here:
+// - assigns every visitor a stable id for GrowthBook targeting and experiments
+// - keeps the admin panel's Supabase login session fresh
+export async function proxy(request: NextRequest) {
+  // Refresh first: it updates request.cookies, which the headers below are copied from
+  const sessionCookies = request.nextUrl.pathname.startsWith("/admin")
+    ? await refreshSupabaseSession(request)
+    : [];
+
   const existingId = request.cookies.get(VISITOR_ID_COOKIE)?.value;
   const visitorId = existingId ?? crypto.randomUUID();
 
@@ -25,6 +32,8 @@ export function proxy(request: NextRequest) {
       httpOnly: true,
     });
   }
+
+  sessionCookies.forEach(({ name, value, options }) => response.cookies.set(name, value, options));
 
   return response;
 }
