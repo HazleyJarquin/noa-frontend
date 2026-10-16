@@ -27,9 +27,33 @@ const MENU_LINKS: { href: string; label: string; icon: Icon }[] = [
 const isActive = (pathname: string, href: string) =>
   href === "/" ? pathname === "/" : pathname.startsWith(href);
 
+// Reads the pathname, so it must only render while the drawer is open: pages with dynamic
+// params (/pedido/[id]) can't read it during prerender (CLIENT_HOOK_DYNAMIC build error)
+const MenuLinks = ({ onNavigate }: { onNavigate: () => void }) => {
+  const pathname = usePathname();
+
+  return (
+    <nav aria-label="Menú principal">
+      {MENU_LINKS.map((link) => (
+        <NavLink
+          key={link.href}
+          component={Link}
+          href={link.href}
+          label={link.label}
+          leftSection={<link.icon size={20} />}
+          active={isActive(pathname, link.href)}
+          color="navy"
+          variant="light"
+          onClick={onNavigate}
+          className="rounded-md"
+        />
+      ))}
+    </nav>
+  );
+};
+
 export const MainMenu = () => {
   const [opened, { open, close }] = useDisclosure(false);
-  const pathname = usePathname();
 
   return (
     <>
@@ -56,22 +80,7 @@ export const MainMenu = () => {
         }
       >
         <Stack gap="lg">
-          <nav aria-label="Menú principal">
-            {MENU_LINKS.map((link) => (
-              <NavLink
-                key={link.href}
-                component={Link}
-                href={link.href}
-                label={link.label}
-                leftSection={<link.icon size={20} />}
-                active={isActive(pathname, link.href)}
-                color="navy"
-                variant="light"
-                onClick={close}
-                className="rounded-md"
-              />
-            ))}
-          </nav>
+          {opened && <MenuLinks onNavigate={close} />}
 
           <Button
             component="a"
