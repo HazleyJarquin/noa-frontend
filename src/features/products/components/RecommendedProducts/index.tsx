@@ -27,8 +27,8 @@ export const RecommendedProducts = ({ products }: RecommendedProductsProps) => {
       </Group>
 
       {/* Bleeds to the screen edge so cards scroll under the page padding */}
-      <ScrollArea type="never" className="-mx-5">
-        <Group gap="sm" wrap="nowrap" align="stretch" className="px-5">
+      <ScrollArea type="never" className="-mx-5 lg:mx-0">
+        <Group gap="sm" wrap="nowrap" align="stretch" className="px-5 lg:px-0">
           {products.map((product) => (
             <RecommendedProductCard key={product.id} product={product} />
           ))}

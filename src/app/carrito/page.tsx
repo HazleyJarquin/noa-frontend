@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { DesktopHeader } from "@/shared/components/DesktopHeader";
 import { Text } from "@mantine/core";
 import { CartView } from "@/features/cart/components";
 import { getFeaturedProducts } from "@/features/products/services";
@@ -19,6 +20,7 @@ export default async function CartPage() {
 
   return (
     <div className="min-h-screen w-full bg-surface flex flex-col gap-6 pb-32">
+      <DesktopHeader />
       {/* Flags read cookies (dynamic): pass the promise and resolve it inside Suspense,
           so the rest of the page stays prerendered */}
       <CartView

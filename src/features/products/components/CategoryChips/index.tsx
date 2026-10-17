@@ -18,9 +18,9 @@ export const CategoryChips = ({ categories, value, onChange }: CategoryChipsProp
 
   return (
     // Bleeds to the screen edge so chips scroll under the page padding
-    <ScrollArea type="never" className="-mx-5">
+    <ScrollArea type="never" className="-mx-5 lg:mx-0">
       <Chip.Group value={value} onChange={onChange}>
-        <Group gap="xs" wrap="nowrap" className="px-5">
+        <Group gap="xs" wrap="nowrap" className="px-5 lg:px-0">
           {options.map((option) => (
             <Chip
               key={option.value}

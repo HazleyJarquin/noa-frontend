@@ -27,7 +27,7 @@ export const ProductInfoTabs = ({ product }: ProductInfoTabsProps) => {
       <Tabs.List grow>
         <Tabs.Tab value="descripcion">Descripción</Tabs.Tab>
         <Tabs.Tab value="especificaciones">Especificaciones</Tabs.Tab>
-        <Tabs.Tab value="entrega">Políticas de Entrega</Tabs.Tab>
+        <Tabs.Tab value="entrega">Retiro y políticas</Tabs.Tab>
       </Tabs.List>
 
       <Tabs.Panel value="descripcion">

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { DesktopHeader } from "@/shared/components/DesktopHeader";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { Loader, Stack } from "@mantine/core";
@@ -39,6 +40,7 @@ const OrderContent = async ({ params }: { params: Promise<{ id: string }> }) => 
 export default function OrderPage({ params }: PageProps<"/pedido/[id]">) {
   return (
     <div className="min-h-screen w-full bg-surface flex flex-col gap-6 pb-10">
+      <DesktopHeader />
       <PageHeader subtitle="Mi pedido" backHref="/productos" />
       <div className="mx-auto w-full max-w-xl px-5">
         {/* Order data is per-visit and uncached: stream it inside Suspense */}

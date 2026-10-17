@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { DesktopHeader } from "@/shared/components/DesktopHeader";
 import { Suspense } from "react";
 import { Skeleton, SimpleGrid, Stack } from "@mantine/core";
 import { Footer } from "@/shared/components";
@@ -35,9 +36,10 @@ export default async function ProductsPage() {
   return (
     // pb-24 keeps the footer clear of the fixed cart bar
     <div className="min-h-screen w-full bg-white flex flex-col gap-5 pb-24">
+      <DesktopHeader />
       <PageHeader subtitle="Catálogo" />
 
-      <div className="px-5">
+      <div className="px-5 mx-auto w-full max-w-7xl lg:px-8">
         {/* ProductBrowser reads ?categoria= with useSearchParams, which needs a Suspense boundary */}
         <Suspense fallback={<BrowserFallback />}>
           <ProductBrowser products={products} categories={categories} />

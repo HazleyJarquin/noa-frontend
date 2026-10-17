@@ -15,7 +15,7 @@ export const CartSummaryBar = () => {
   const visible = mounted && itemCount > 0;
 
   return (
-    <Affix position={{ bottom: 0, left: 0, right: 0 }}>
+    <Affix position={{ bottom: 0, left: 0, right: 0 }} className="lg:hidden">
       {/* CSS transition instead of Mantine <Transition>: Next keeps visited pages alive in a
           hidden <Activity>, which pauses effects, so an effect-driven enter animation is
           missed when the cart changes on another page. CSS only depends on the current value. */}

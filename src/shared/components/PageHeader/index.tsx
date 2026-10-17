@@ -12,7 +12,7 @@ type PageHeaderProps = {
 
 // Top bar for inner pages: back arrow + store name + section name, menu on the right
 export const PageHeader = ({ subtitle, backHref = "/" }: PageHeaderProps) => (
-  <Group justify="space-between" wrap="nowrap" className="px-5 pt-4">
+  <Group justify="space-between" wrap="nowrap" className="px-5 pt-4 lg:hidden">
     <Group gap="sm" wrap="nowrap">
       <ActionIcon
         component={Link}

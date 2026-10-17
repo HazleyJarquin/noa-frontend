@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { DesktopHeader } from "@/shared/components/DesktopHeader";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { Breadcrumbs } from "@mantine/core";
@@ -45,7 +46,7 @@ const ProductInfoSection = async ({ product }: { product: ProductDetail }) => {
   if (!showTabs) return null;
 
   return (
-    <div className="px-5">
+    <div className="px-5 mx-auto w-full max-w-7xl lg:px-8">
       <ProductInfoTabs product={product} />
     </div>
   );
@@ -61,7 +62,8 @@ export default async function ProductPage({ params }: PageProps<"/productos/[slu
   return (
     // pb-28 keeps the footer clear of the fixed purchase bar
     <div className="min-h-screen w-full bg-surface flex flex-col gap-8 pb-28">
-      <div className="flex flex-col gap-4 px-5 pt-4">
+      <DesktopHeader />
+      <div className="flex flex-col gap-4 px-5 pt-4 mx-auto w-full max-w-7xl lg:px-8 lg:pt-6">
         <Breadcrumbs
           separator={<IconChevronRight size={12} />}
           separatorMargin={4}
@@ -86,7 +88,7 @@ export default async function ProductPage({ params }: PageProps<"/productos/[slu
         <ProductInfoSection product={product} />
       </Suspense>
 
-      <div className="px-5">
+      <div className="px-5 mx-auto w-full max-w-7xl lg:px-8">
         <RecommendedProducts products={recommended} />
       </div>
 

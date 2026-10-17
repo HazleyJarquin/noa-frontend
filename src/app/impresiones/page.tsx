@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { DesktopHeader } from "@/shared/components/DesktopHeader";
 import { IconPrinter } from "@tabler/icons-react";
 import { Footer } from "@/shared/components";
 import { PageHeader } from "@/shared/components/PageHeader";
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
 export default function PrintingPage() {
   return (
     <div className="min-h-screen w-full bg-surface flex flex-col gap-6">
+      <DesktopHeader />
       <PageHeader subtitle="Impresiones" />
 
       <div className="mx-auto flex w-full max-w-xl flex-col gap-6 px-5 pb-10">

@@ -55,7 +55,7 @@ export const FeaturedCatalog = ({ products: allProducts, categories }: FeaturedC
       </Group>
 
       {products.length > 0 ? (
-        <SimpleGrid cols={2} spacing="sm">
+        <SimpleGrid cols={{ base: 2, sm: 3, lg: 4 }} spacing="sm">
           {products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
@@ -80,6 +80,7 @@ export const FeaturedCatalog = ({ products: allProducts, categories }: FeaturedC
         size="md"
         fullWidth
         rightSection={<IconArrowRight size={16} />}
+        className="lg:w-auto lg:self-center lg:px-10"
       >
         Ver todos los productos
       </Button>

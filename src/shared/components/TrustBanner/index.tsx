@@ -1,5 +1,5 @@
 import React from "react";
-import { IconTruck } from "@tabler/icons-react";
+import { IconBuildingStore } from "@tabler/icons-react";
 import { Pulse } from "../Pulse";
 
 export const TrustBanner = () => {
@@ -11,8 +11,8 @@ export const TrustBanner = () => {
       </div>
 
       <div className="flex items-center gap-2">
-        <IconTruck size={18} aria-hidden />
-        <p className="font-bold text-xs">Envíos Nicaragua</p>
+        <IconBuildingStore size={18} aria-hidden />
+        <p className="font-bold text-xs">Retiro en tienda</p>
       </div>
     </div>
   );

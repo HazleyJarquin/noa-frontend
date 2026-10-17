@@ -8,3 +8,4 @@ export * from "./RecommendedProducts";
 export * from "./CategoryChips";
 export * from "./SortMenu";
 export * from "./ProductBrowser";
+export * from "./ProductFilters";

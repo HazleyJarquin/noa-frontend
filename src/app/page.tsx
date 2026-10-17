@@ -1,4 +1,5 @@
 import { IconCategory } from "@tabler/icons-react";
+import { DesktopHeader } from "@/shared/components/DesktopHeader";
 import { CategoryCard } from "@/features/categories/components";
 import { Footer, Header, TrustBanner } from "@/shared/components";
 import { SimpleGrid } from "@mantine/core";
@@ -25,12 +26,14 @@ export default async function Home() {
         <Header />
       </div>
 
-      <div className="flex flex-col gap-3 px-5">
+      <DesktopHeader />
+
+      <div className="flex flex-col gap-3 px-5 mx-auto w-full max-w-7xl lg:px-8">
         <div className="flex items-center gap-1">
           <IconCategory size={20} />
           <p className="text-primary font-bold text-lg">Categorías Populares</p>
         </div>
-        <SimpleGrid cols={4} spacing="sm">
+        <SimpleGrid cols={{ base: 4, lg: 8 }} spacing="sm">
           {categories.map((category) => (
             <CategoryCard
               key={category.id}
@@ -42,11 +45,11 @@ export default async function Home() {
         </SimpleGrid>
       </div>
 
-      <div className="px-5">
+      <div className="px-5 mx-auto w-full max-w-7xl lg:px-8">
         <ServicesShowcase />
       </div>
 
-      <div className="px-5">
+      <div className="px-5 mx-auto w-full max-w-7xl lg:px-8">
         <FeaturedCatalog products={products} categories={categories} />
       </div>
 

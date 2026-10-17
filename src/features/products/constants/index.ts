@@ -100,16 +100,16 @@ export const PRODUCTS_PAGE_SIZE = 20;
 // Same for every product; move to Supabase if it ever varies per product
 export const DELIVERY_POLICIES = [
   {
-    title: "Managua",
-    text: "Entrega express en 24 horas hábiles en pedidos confirmados antes de las 3:00 p.m.",
+    title: "Retiro en tienda",
+    text: "Los pedidos se retiran en la tienda. Te escribimos por WhatsApp cuando tu pedido esté listo.",
   },
   {
-    title: "Departamentos",
-    text: "Despachos a todo el país por transportista de 2 a 4 días hábiles.",
+    title: "Sin envíos",
+    text: "Por ahora no realizamos envíos a domicilio ni a departamentos.",
   },
   {
-    title: "Cambios y devoluciones",
-    text: "Tienes 7 días para cambios por defecto de fábrica, con el producto sin uso y en su empaque.",
+    title: "Sin cambios ni devoluciones",
+    text: "Revisa tu pedido al retirarlo: una vez entregado no se aceptan cambios ni devoluciones.",
   },
 ];
 

@@ -6,7 +6,7 @@ import { MainMenu } from "../MainMenu";
 
 export const Header = () => {
   return (
-    <div className="w-full h-auto shadow px-10 py-5 flex flex-col gap-3">
+    <div className="w-full h-auto shadow px-10 py-5 flex flex-col gap-3 lg:hidden">
       <div className="flex items-center w-full justify-between">
         <Group gap="sm" wrap="nowrap">
           <Image

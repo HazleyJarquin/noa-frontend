@@ -10,7 +10,7 @@ export const CartHeader = () => {
   const itemCount = useCartStore(selectItemCount);
 
   return (
-    <Group justify="space-between" wrap="nowrap" className="px-5 pt-4">
+    <Group justify="space-between" wrap="nowrap" className="px-5 pt-4 lg:hidden">
       <Group gap="sm" wrap="nowrap">
         <ActionIcon
           variant="subtle"

@@ -7,9 +7,11 @@ type OrderSummaryProps = {
   itemCount: number;
   subtotal: number;
   total: number;
+  // Extra content at the bottom (desktop pay button)
+  children?: React.ReactNode;
 };
 
-export const OrderSummary = ({ itemCount, subtotal, total }: OrderSummaryProps) => {
+export const OrderSummary = ({ itemCount, subtotal, total, children }: OrderSummaryProps) => {
   return (
     <Paper
       radius="lg"
@@ -44,6 +46,7 @@ export const OrderSummary = ({ itemCount, subtotal, total }: OrderSummaryProps) 
           {formatCordobas(total)}
         </Text>
       </Group>
+      {children}
     </Paper>
   );
 };
